@@ -18,3 +18,17 @@ week_01/lec_01.nav
 week_01/lec_01.snm
 
 week_01/lec_01.tex
+
+*.aux
+
+*.nav
+
+*.log
+
+*.out
+
+*.snm
+
+*.toc
+
+*.vrb
