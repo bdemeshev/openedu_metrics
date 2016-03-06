@@ -1,7 +1,7 @@
 # makefile: Rmd -> md -> tex -> pdf
 # v 2.0
 # .Rnw extension is automatically added
-file_name = lec_01
+file_name = week_01_ols
 
 $(file_name).pdf: $(file_name).tex
 	# protection against biber error
