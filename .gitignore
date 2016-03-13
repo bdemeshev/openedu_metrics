@@ -32,3 +32,6 @@ week_01/lec_01.tex
 *.toc
 
 *.vrb
+.Rproj.user
+
+.Rhistory
