@@ -22,6 +22,19 @@ header-includes:
 
 * $Var(y_i)$ --- дисперсия случайной величины $y_i$. В других источниках можно встретить обозначение $D(y_i)$, $V(y_i)$.
 
+* $Cov(y_i, x_i)$ --- ковариация случайных величин $y_i$ и $x_i$, $Cov(y_i, x_i) = E(y_i x_i) - E(y_i)E(x_i)$.
+
+* $Corr(y_i, x_i)$ --- корреляция случайных величин $y_i$ и $x_i$, $Corr(y_i, x_i) = Cov(y_i, x_i)/\sqrt{Var(y_i)Var(x_i)}$.
+
+* $sCov(y,x)$ --- выборочная (s --- сокращение от sample) ковариация векторов $y_1$, \ldots, $y_n$ и $x_1$, \ldots, $x_n$, $sCov(y_i, x_i) = \sum (y_i - \bar y) (x_i - \bar x)/(n-1)$
+
+* $sVar(y)$ --- выборочная дисперсия вектора $y_1$, \ldots, $y_n$, $sVar(y_i, x_i) = \sum (y_i - \bar y)^2 /(n-1)$
+
+
+* $sCorr(y,x)$ --- выборочная корреляция векторов $y_1$, \ldots, $y_n$ и $x_1$, \ldots, $x_n$, $sCorr(y, x) = sCov(y_i, x_i)/\sqrt{sVar(y_i)sVar(x_i)}$.
+
+
+
 Особую путаницу может вызвать обозначение RSS и ESS! Будьте очень бдительны! В **данном курсе**:
 
 * $RSS$, сумма квадратов остатков, residual sum of squares, $RSS=\sum_{i=1}^n (y_i - \hat{y}_i)^2$.
