@@ -31,7 +31,7 @@ output:
 
 ```{r, echo=FALSE, include=FALSE}
 library(knitr)
-opts_chunk$set(cache=FALSE, dev='png',dpi=300)
+opts_chunk$set(cache = FALSE, dev = 'png', dpi = 300)
 ```
 
 
@@ -83,7 +83,7 @@ Cочетание первых двух: данные по нескольким 
 library("knitr")
 library("dplyr")
 library("ggplot2")
-d <- cars %>% mutate(dist=0.3*dist,speed=1.61*speed)
+d <- cars %>% mutate(dist = 0.3 * dist, speed = 1.61 * speed)
 kable(head(d))
 ```
 
@@ -247,8 +247,11 @@ $RSS=\sum_{i=1}^n \hat{\varepsilon}_i^2$ --- сумма квадратов ос�
 ## Регрессия проходит через среднюю точку [у доски]
 
 ```{r, warning=FALSE, echo=FALSE}
-qplot(data=d, speed,dist,xlab="Скорость машины (км/ч)",ylab=" Длина тормозного пути (м)",main="Данные по машинам 1920-х годов") + theme_bw() +
-  stat_smooth(method="lm", se=FALSE) +
+qplot(data = d, speed, dist,
+      xlab = "Скорость машины (км/ч)",
+      ylab = " Длина тормозного пути (м)",
+      main = "Данные по машинам 1920-х годов") + theme_bw() +
+  stat_smooth(method = "lm", se = FALSE) +
   geom_vline(xintercept = mean(d$speed), linetype = "longdash") +
   geom_hline(yintercept = mean(d$dist), linetype = "longdash")
 ```
@@ -578,8 +581,8 @@ a + A
 - два основных объекта: вектор и табличка с данными
 
 ```{r}
-x <- c(5,2,1)
-d <- data.frame(rost=c(170,170,180),ves=c(60,70,80))
+x <- c(5, 2, 1)
+d <- data.frame(rost = c(170, 170, 180), ves = c(60, 70, 80))
 ```
 
 - любой реальный скрипт начинается с загрузки дополнительных пакетов
