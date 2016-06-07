@@ -215,10 +215,11 @@ $\rho_k$ --- автокорреляционная функция. Измеряе
 
 $\phi_k$ --- частная автокорреляционная функция. Измеряет прямой эффект воздействия $y_{t-k}$ на $y_t$, устранив сквозное воздействие через $y_{t-k+1}$, $y_{t-k+2}$, ..., $y_{t-1}$.
 
+
 ![partial correlation](diagram-crop.pdf)
 
 <!--
-\begin{tikzcd}
+\begin{tikzcd}[matrix scale=1.5]
 y_1  \arrow[r] \arrow[rr, bend left=50] \arrow[bend left=75]{rrr}{\phi_3} &
 y_2  \arrow[r] \arrow[rr, bend left=50] &
 y_3  \arrow[r] &
