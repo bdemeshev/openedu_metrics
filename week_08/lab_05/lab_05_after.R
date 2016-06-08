@@ -39,7 +39,7 @@ na_perc <- function(d) {
   # таблица:
   if (!is.data.frame(d))
     stop("d should be a data.frame!")
-  res <- sum(is.na(d))/nrow(d)/ncol(d)  # делим количество NA на количество строк и количество столбцов
+  res <- sum(is.na(d)) / nrow(d) / ncol(d)  # делим количество NA на количество строк и количество столбцов
   return(res)  # функция  выдаёт на выходе значение res
 }
 
