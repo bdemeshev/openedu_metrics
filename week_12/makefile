@@ -3,7 +3,7 @@
 # .Rnw extension is automatically added
 file_name = week_12_time_series
 
-$(file_name).pdf: $(file_name).tex diagram-crop.pdf
+$(file_name).pdf: $(file_name).tex 
 	# protection against biber error
 	# http://tex.stackexchange.com/questions/140814/
 	rm -rf `biber --cache`
