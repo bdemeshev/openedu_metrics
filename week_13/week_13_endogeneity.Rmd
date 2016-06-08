@@ -5,7 +5,8 @@ lang: russian
 header-includes:
   - \author[Эконометрика. Неделя 13/15]{Эконометрика. Openedu. Неделя 13}
   - \usepackage{dcolumn}
-  - \usepackage{diagrams}
+  - \usepackage{tikz}
+  - \usepackage{tikz-cd}
   - \DeclareMathOperator*{\plim}{plim}
   - \newcommand{\e}{\varepsilon}
   - \newcommand{\hb}{\hat{\beta}}
@@ -373,7 +374,7 @@ $Var(x_i)=Var(d_i)=9$, $Var(\varepsilon_i)=1$, $Cov(x_i,d_i)=-6$.
 
 Инструментальная переменная $z_i$ для регрессора $x_i$ может влиять на $y_i$ через  через регрессор $x_i$, но не через ошибку $\e_i$.
 
-# Связи инструментальной переменной
+# Связи инструментальной переменной {.fragile}
 
 Модель с эндогенностью:
 \[
@@ -381,13 +382,12 @@ y_i = \beta_1 + \beta_2 x_i + \e_i
 \]
 
 
-\[
-\begin{diagram}
-z_i &\rTo & x_i  & \rTo  & y_i \\
-    &     & \uTo & \ruTo &     \\
-    &     & \e_i &       &    \\
-\end{diagram}
-\]
+\begin{tikzcd}
+z_i \arrow[r] & x_i  \arrow[r]              & y_i \\
+              & \e_i \arrow[u] \arrow[ur]   & \\ 
+\end{tikzcd}
+
+<!-- Обязательна опция fragile у слайда! -->
 
 Стрелочки показывают направления влияния.
 
