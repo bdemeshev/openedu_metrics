@@ -46,6 +46,7 @@ base_q + aes(colour = factor(brick))
 
 # делим набор данных на две части: обучающую (75%) и тестовую получаем номера
 # наблюдений из обучающей части
+set.seed(42) # для точной воспроизводимости случайного разбиения
 in_sample <- createDataPartition(f$price, p = 0.75, list = FALSE)
 head(in_sample)  # несколько номеров наблюдений, входящих в обучающую выборку
 
@@ -55,6 +56,7 @@ f_test <- f[-in_sample, ]  # отбираем наблюдения с номер
 # обычная регрессия
 model_lm <- lm(data = f_train, price ~ totsp + kitsp + livesp + brick)
 # случайный лес
+set.seed(42) # для точной воспроизводимости случайного леса
 model_rf <- randomForest(data = f_train, price ~ totsp + kitsp + livesp + brick)
 
 # поместим цену в отдельную переменную
@@ -83,10 +85,12 @@ summary(model_logit)  # отчет по модели
 # яркий симптом такой ситуации --- огромные стандартные ошибки
 
 # байесовский подход априорное распределение: beta ~ N(0, 50^2)
+set.seed(42) # для точной воспроизводимости результатов MCMC
 model_mcmc_logit <- MCMClogit(data = bad, y ~ x, b0 = 0, B0 = 1/50^2)
 summary(model_mcmc_logit)  # отчет по байесовской логит-модели
 
 # байесовский подход априорное распределение: beta ~ N(0, 10^2)
+set.seed(42) # для точной воспроизводимости результатов MCMC
 model_mcmc_logit <- MCMClogit(data = bad, y ~ x, b0 = 0, B0 = 1/10^2)
 summary(model_mcmc_logit)  # отчет по байесовской логит-модели
 
@@ -106,6 +110,7 @@ summary(model_lm)  # мусорная переменная незначима
 
 # байесовская регрессия с мусорной переменной выборка из апостериорного
 # распределения коэффициентов размера 4000
+set.seed(42) # для точной воспроизводимости результатов MCMC
 model_ss <- spikeslab(data = h, dist ~ speed + junk, n.iter2 = 4000)
 print(model_ss)  # отчет по модели
 
