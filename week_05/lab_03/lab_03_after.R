@@ -43,7 +43,8 @@ qplot(data = f, log(price))  # гистограмма
 
 # гистограмма для кирпичных и некирпичных домов
 qplot(data = f, log(price), fill = brick)  # вариант А
-qplot(data = f, log(price), fill = brick, position = "dodge")  # вариант Б
+ggplot(data = f, aes(log(price), fill = brick)) +
+  geom_histogram(position = "dodge") # вариант Б с большими возможностями настройки
 
 # оцененные функции плотности
 qplot(data = f, log(price), fill = brick, geom = "density")
