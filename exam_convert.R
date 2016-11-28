@@ -21,12 +21,12 @@ set.seed(42)
 
 all_rmd <- list.files("exercises/")
 
-openedu_final_v01 <- str_subset(all_rmd, pattern = "^v01")
-openedu_final_v01 <- paste0("exercises/", openedu_final_v01)
+openedu_final <- str_subset(all_rmd, pattern = "^v02")
+openedu_final <- paste0("exercises/", openedu_final)
 
 dir.create("moodle_out")
 output_dir <- "moodle_out/"
-exams2moodle(openedu_final_v01, n = 1, dir = output_dir, encoding = "UTF-8")
+exams2moodle(openedu_final, n = 1, dir = output_dir, encoding = "UTF-8")
 # n - number of copies
 
 
@@ -36,15 +36,15 @@ dir.create("pdf_out_temp")
 dir.create("pdf_out_supp")
 
 
-exams2pdf(openedu_final_v01, encoding = "UTF-8", template = "templates/plain.tex",
+exams2pdf(openedu_final, encoding = "UTF-8", template = "templates/plain.tex",
           verbose = TRUE, dir = "pdf_out", tdir = "pdf_out_temp", sdir = "pdf_out_supp")
-exams2html(openedu_final_v01, encoding = "UTF-8", template = "templates/plain.tex")
+exams2html(openedu_final, encoding = "UTF-8", template = "templates/plain.tex")
 
-exams2nops(openedu_final_v01,
+exams2nops(openedu_final,
            language = "ru", encoding = "UTF-8")
 
 # produces md from Rmd
-xweave(openedu_final_v01, encoding = "UTF-8", engine = "knitr")
+xweave(openedu_final, encoding = "UTF-8", engine = "knitr")
 
 
 
