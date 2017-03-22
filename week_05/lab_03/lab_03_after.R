@@ -1,13 +1,11 @@
 library("memisc")
 library("lmtest")
-library("ggplot2")
-library("dplyr")
 library("foreign")
 library("vcd")
-library("devtools")
 library("hexbin")
 library("pander")
 library("sjPlot")
+library("tidyverse")
 library("knitr")
 
 # ESLI RUSSKIE BUKVI NE VIDNI ---> File -- Reopen with encoding --- utf8 --- set
