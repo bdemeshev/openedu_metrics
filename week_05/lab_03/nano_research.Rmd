@@ -1,32 +1,31 @@
 ---
 title: "Нано исследование"
-graphics: yes
-header-includes:
-- \usepackage{booktabs}
-- \usepackage{dcolumns}
-output:
-  word_document: default
-  pdf_document:
-    keep_tex: yes
-lang: russian
-babel-lang: russian
+output: word_document
+lang: ru-RU
+editor_options: 
+  chunk_output_type: console
 ---
+
+Важный комментарий! Для корректной работы этого кода необходимо установить пакет `huxtable` командой:
+```{r, eval=FALSE}
+devtools::install_github('hughjonesd/huxtable')
+```
+Команду нужно выполнить один раз, после этого этот комментарий можно стереть из файла :)
+
+
+
 
 В этом исследовании мы рассмотрим цены на квартиры в Москве.
 
+
 ```{r, include=FALSE}
-library("tidyverse") # подборка пакетов для графиков и манипуляций с данными
-library("memisc") # для создания красивых табличек
-library("knitr") # комбинирование R и Latex
-
-# для работы данного кода требуется более свежая версия пакета pander
-# установить её можно командой
-# devtools::install_github('Rapporter/pander')
-# установка выполняется один раз :)
-library("pander") # перевод табличек в маркдаун
-
-f <- read.csv("flats_moscow.txt", sep = "\t", header = TRUE, dec = ".")
-opts_chunk$set(echo = FALSE, message = FALSE, dev = "png", dpi = 300)
+library(huxtable) # перевод табличек в markdown, tex, html, word...
+library(tidyverse) # коллекция, куда входят dplyr, ggplot2, ...
+library(pander) # перевод разных объектов в маркдаун
+library(knitr) # настройки обработки кусков кода
+f <- read.csv("flats_moscow.txt", sep = "\t",
+  header = TRUE, dec = ".")
+opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
 В нашем наборе данных `r nrow(f)` наблюдений. Средняя цена квартиры равна `r round(mean(f$price), 0)` тысяч у.е.
@@ -34,20 +33,24 @@ opts_chunk$set(echo = FALSE, message = FALSE, dev = "png", dpi = 300)
 Распределение цен квартир в кирпичных и некирпичных домах:
 
 ```{r}
-f <- mutate_each(f, "factor", walk, brick, floor, code)
+# синтаксис mutate_each из видео устарел :)
+# у mutate_at аргументы: табличка, названия переменных, функция
+f <- mutate_at(f, c("walk", "brick", "floor", "code"), factor)
 ggplot(data = f, aes(log(price), fill = brick)) +
-  geom_histogram(position = "dodge") + 
-  labs(x = "Логарифм цены (тыс. у.е.)", y = "Количество квартир", title = "Цены квартир в Москве")
+  geom_histogram(position = "dodge")
 ```
 
-Оценим и сравним три модели
-```{r, results='asis'}
+Оценим и сравним три модели:
+
+```{r, results='asis', warning=FALSE}
 model_0 <- lm(data = f, log(price) ~ log(totsp))
 model_1 <- lm(data = f, log(price) ~ log(totsp) + brick)
 model_2 <- lm(data = f, log(price) ~ log(totsp) + brick + brick:log(totsp))
-m <- mtable("Model 0" = model_0, "Model 1" = model_1, "Model 2" = model_2)
-pander(m) # перевод таблицы в маркдаун
-# toLatex(m) # перевод таблицы напрямую в Latex
+
+reg_table <- huxreg(model_0, model_1, model_2)
+print_md(reg_table)
 ```
 
 У нас лучше оказалась модель 2.
+
+
